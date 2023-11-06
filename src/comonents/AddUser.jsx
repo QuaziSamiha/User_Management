@@ -14,6 +14,20 @@ const AddUser = () => {
     const newUser = { userName, userEmail };
     const allUsers = [...users, newUser];
     setUsers(allUsers);
+
+    fetch("http://localhost:5000/users", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(newUser),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        // console.log(data);
+        console.log("New User Added Succefully");
+        console.log(`welcome ${data.userName}`);
+      });
   };
   console.log(users);
   return (
